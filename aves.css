@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box !important;
+}
+
+#contenedor > * {
+    max-width: 950px;
+    margin: auto;
+    padding: 1%;    
+    width: 100%;
+}
+
+#navegacion {
+    background-color: rgb(230, 173, 173);
+    height: 30px;
+}
+#presentacion {
+    background-color: transparent;
+    background-image: url('images/flamencos1000recortada.jpg');
+    height: 250px;
+    opacity: 0.85;
+}
+
+h1 {
+    color: rgb(230, 173, 173);
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+}
+
+#descubrir {
+    padding: 2% 6%;
+}
+
+#descubrir img {
+    opacity: 0.5;
+}
+
+#descubrir img:hover {
+    opacity: 0.8;
+}
+
+.contenedorimg {
+    border: 0;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.contenedorimg span {
+    font-size: 3em;    
+    font-variant: small-caps;
+    left: 100px;
+    opacity: 0.6;
+    position: absolute;
+    top: -140px;    
+    visibility: visible;
+}
+
+footer {
+    background-color: grey;
+    clear: both;
+}
+
+/* sp.html */
+
+.cientifico {
+    font-style: italic;
+}
+
+#principal {
+    height: 800px;
+    width: 100%;
+}
+
+/* #principal>div {
+    height: 320px;
+    margin: 20px;
+} */
+
+#principal>#mosaico>div {
+    float: left;
+    width: 180px;
+}
+
+#principal>#infosp>div {
+    display: block;
+    max-height: 317px;
+    width: 100%;
+}
+
+#infosp>div>div {
+    background-color: rgb(230, 173, 173);
+    float: left;
+    margin: 1%;
+    max-width: 317px;
+    padding: 1%;
+    width: 48%;
+}
+
+/* #principal>div>div>* {
+    margin: auto;
+    width: 300px;
+} */
+
+/* especies.html */
+
+#mosaico .avemosaico {
+    background-color: rgb(230, 173, 173);;
+    height: 200px;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 200px;
+}
+
+#mosaico .avemosaico img {
+    height: 150px;
+    margin: auto;
+    width: 150px;
+}
+
+#mosaico .avemosaico img+span {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+#fotosp>img {
+    width: 100%;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Especies</title>
+    <link rel="icon" type="image/png" href="images/faviconpink.png" sizes="16">
+    <link rel="stylesheet" href="aves.css" />
+    <script src="estilo.js"></script>
+    <script src="gestiondatos.js"></script>
+</head>
+<body>
+    <div id="contenedor">
+        <!-- Barra de navegación superior -->
+        <div id="navegacion">
+            <a href="index.html">Portada</a> · <a href="especies.html">Especies</a> · <a href="lugares.html">Lugares</a>
+        </div>
+        <div id="principal">
+        <?php
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $nombrecomun = '';
+            ?>            
+            <script> 
+                leeEspecies(); 
+                let estaEspecie = todasEspecies.filter((sp) => {
+                    return sp.id === $id;
+                });             
+            </script>
+        <?php
+            $nombrecomun = estaEspecie.nombrecomun;
+            echo '<h1>', $nombrecomun, '</h1>';
+        } else {
+        ?>
+            <h1>Especies</h1>
+            <div id="mosaico">
+                <!-- Dibujar sp con enlace para mandar el id a SELF -->
+                <script>
+                    window.onload = () => {
+                        leeEspecies();
+                        rellenaEspecies(todasEspecies);
+                    }
+                </script>
+            </div>
+            <?php
+        }
+        ?>
+        </div>
+        <footer>
+            <div id="photocredits">
+                Flamencos: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@afs_snapshots?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Angel Santos"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Angel Santos</span></a>        
+                Ánades rabudos: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@wildhoney?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from John Fowler"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">John Fowler</span></a>
+                Botes: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@joseantoniojimenez?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Jose Antonio Jiménez Macías"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Jose Antonio Jiménez Macías</span></a>
+            </div>
+        </footer>  
+    </div>    
+</body>
+</html>
