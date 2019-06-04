@@ -4,7 +4,14 @@ window.onload = function() {
         container: 'contenedormapa'
     });
     
-    guardaCadiz();
+    const comarcasAndaluzas = new M.layer.GeoJSON({
+        name: 'comarcasandaluzas',
+        url: 'http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:comarcas&maxFeatures=50&outputFormat=application%2Fjson'
+    });
+
+    mapajs.addLayers(comarcasAndaluzas);
+
+    /* guardaCadiz();
 
     function guardaCadiz() {
         const xhr = new XMLHttpRequest();
@@ -21,7 +28,7 @@ window.onload = function() {
     function trataComarcas(andaluciaFeatures) {
         const comarcasCadiz = [];
         const p1 = new Promise(function(resolve) {
-            andaluciaFeatures.forEach((feature) => {
+            andaluciaFeatures.forEach(function(feature) {
                 if (feature.id === 'comarcas.15') {
                     comarcasCadiz.push(feature);
                 }
@@ -40,7 +47,7 @@ window.onload = function() {
             "type": "FeatureCollection",
             "features": features
         });
-    }
+    } */
 }
 
 
@@ -64,7 +71,7 @@ window.onload = function() {
      * La Janda
      * Sierra de Grazalema
      * 
-     * Los Alcornocales se reparte entre Campo de Gibraltar y La Janda
+     * Los Alcornocales se reparte entre Campo de Gibraltar y La Janda (5 -> 6 y 7)
      */
 
 /*     const provincias = new M.layer.GeoJSON({
