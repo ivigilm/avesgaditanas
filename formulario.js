@@ -1,23 +1,23 @@
 /* CREACIÓN DE SELECT */
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            especies = JSON.parse(xhr.responseText);
-            crearOpcionesSp(especies);
-        }
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        especies = JSON.parse(xhr.responseText);
+        crearOpcionesSp(especies);
     }
-    xhr.open("GET", 'lecturasp.php', true);
-    xhr.send();
+}
+xhr.open("GET", 'lecturasp.php', true);
+xhr.send();
 
-    var xhr2 = new XMLHttpRequest();
-    xhr2.onreadystatechange = function() {
-        if (xhr2.readyState === 4 && xhr2.status === 200) {
-            comarcas = JSON.parse(xhr2.responseText);
-            creaOpcionesComarca(comarcas);
-        }
+var xhr2 = new XMLHttpRequest();
+xhr2.onreadystatechange = function() {
+    if (xhr2.readyState === 4 && xhr2.status === 200) {
+        comarcas = JSON.parse(xhr2.responseText);
+        creaOpcionesComarca(comarcas);
     }
-    xhr2.open("GET", 'lecturazonas.php', true);
-    xhr2.send();
+}
+xhr2.open("GET", 'lecturazonas.php', true);
+xhr2.send();
 
 function crearOpcionesSp(especies) {
     especies.forEach((sp) => {
@@ -104,4 +104,25 @@ function sumatorio(){
 	}else{
 		document.getElementById('errorcaptcha').innerHTML = "";
 	}
+}
+
+/* ENVÍO DE DATOS (CREACIÓN DE REGISTRO AVISTAMIENTO) */
+
+function registraAvistamiento(nombrepersona, email, especie, comarca, ejemplares, fechavista, descripcion) {
+    xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.open("POST", "introducciondato.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(`
+    nombrepersona=${nombrepersona}
+    &email=${email}
+    idsp=${especie}
+    &idcomarca=${comarca}
+    &numaves=${ejemplares}
+    &fecha=${fechavista}
+    &descripcion=${descripcion}`);
 }

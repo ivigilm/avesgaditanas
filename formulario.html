@@ -15,42 +15,42 @@
 <body>
     <h1>¿Has visto algún ave rara?</h1>
     <h2>¡Dinos cuál, dónde y cuándo! Y contribuye a mantener este sitio. =)</h2>
-    <form action="" method="post" name="formavistamiento">
+    <form action="introducciondato.php" method="post" name="formavistamiento">
         <label>
             <p>¿Cuál es tu nombre?</p>
-            <input type="text" placeholder="Ada Lovelace" id="nombrepersona" onfocusout="nombreContribuyente()" />
+            <input type="text" placeholder="Ada Lovelace" id="nombrepersona" name="nombrepersona" onfocusout="nombreContribuyente()" />
             <span id="errornombre"></span>
         </label><br/>
         <label><p>Correo electrónico:</p>
-            <input type="text" placeholder="ada@thebest.es" id="email" onfocusout="correo()" />
+            <input type="text" placeholder="ada@thebest.es" id="email" name="email" onfocusout="correo()" />
             <span id="erroremail"></span>
         </label><br/>
         <label>
             <p>¿En qué fecha realizaste el avistamiento?</p>
-            <input type="text" placeholder="dd/mm/aaaa" id="fechavista" onfocusout="compruebaFecha()" />
+            <input type="text" placeholder="aaaa-mm-dd" id="fechavista" name="fechavista" onfocusout="compruebaFecha()" />
             <span id="errorfecha"></span>
         </label><br/>
         <label>
             <p>¿Qué especie viste?</p>
-            <select id="especie" onchange="compruebaSp()">
+            <select id="especie" name="especie" onchange="compruebaSp()">
                 <option value="x">-- Selecciona --</option>
             </select>
             <span id="errorespecie"></span>
         </label><br/>
         <label>
             <p>¿Dónde la viste?</p>
-            <select id="comarca" onchange="compruebaComarca()" >
+            <select id="comarca" name="comarca" onchange="compruebaComarca()" >
                 <option value="x">-- Selecciona --</option>
             </select>
             <span id="errorcomarca"></span>
         </label><br/>
         <label>
             <p>¿Cuántas aves eran?</p>
-            <input type="number" id="ejemplares" value="1" min="1" onfocusout="compruebaEjemplares()" />
+            <input type="number" id="ejemplares" name="ejemplares" value="1" min="1" onfocusout="compruebaEjemplares()" />
         </label><br/>
         <label>
             <p>Descripción breve o comentarios sobre el avistamiento:</p>
-            <input type="text" id="descripcion" />
+            <input type="text" id="descripcion" name="descripcion" />
         </label><br/>
         <p><label id="operacion" for="captcha">Resuelve la siguiente operación: </label></p>
 		<input type="text" id="captcha" placeholder="resultado" onfocusout="sumatorio()" />

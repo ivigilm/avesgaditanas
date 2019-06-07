@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="images/faviconpink.png" sizes="16">
     <link rel="stylesheet" href="aves.css" />
     <script src="estilo.js"></script>
-    <script src="gestiondatos.js"></script>
+    <script src="especies.js"></script>
     <script>
         window.onload = () => {
             leeEspecies();
@@ -38,19 +38,6 @@
                 </div>
                 <div>
                     <div id="mapasp" style="width: 300px; height: 300px;">
-<!--                         <img src="https://via.placeholder.com/300" alt="placeholder image" height="300" width="300" /> -->
-                        <script>
-                            mapajs = M.map({
-                                container: 'mapasp'
-                            });
-                            
-                            const comarcasAndaluzas = new M.layer.GeoJSON({
-                                name: 'comarcasandaluzas',
-                                url: 'http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:comarcas&maxFeatures=50&outputFormat=application%2Fjson'
-                            });
-
-                            mapajs.addLayers(comarcasAndaluzas);
-                        </script>
                     </div>
                     <div id="habitat"></div>
                 </div>
