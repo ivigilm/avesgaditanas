@@ -1,5 +1,3 @@
-/* especies.html */
-
 // Muestra mosaico con las especies
 function leeEspecies() {
     let especies;
@@ -35,12 +33,6 @@ function rellenaEspecies(especies) {
 }
 
 function muestraInfoEspecie(infoEspecie) {
-    document.getElementById('mosaico').innerHTML = `id: ${infoEspecie.id}<br/>
-    nombrecomun: ${infoEspecie.nombrecomun}<br/>
-    nombrecientifico: ${infoEspecie.nombrecientifico}<br/>
-    foto: ${infoEspecie.foto}<br/>
-    características: ${infoEspecie.caracteristicas}<br/>
-    hábitat: ${infoEspecie.habitat}`;
     document.getElementById('mosaico').style.display = 'none';
     document.getElementById('infosp').style.display = 'block';
     document.getElementById('tituloespecie').innerHTML = infoEspecie.nombrecomun;        
@@ -52,15 +44,69 @@ function muestraInfoEspecie(infoEspecie) {
     document.getElementById('fotosp').appendChild(fotoAve);
 
     mapajs = M.map({
-        container: 'mapasp'
+        container: 'mapasp',
+        controls: []
     });    
-    const comarcasAndaluzas = new M.layer.GeoJSON({
-        name: 'comarcasandaluzas',
-        url: 'http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:comarcas&maxFeatures=50&outputFormat=application%2Fjson'
+    
+    const poligonoRelleno = new M.style.Polygon({
+        fill: {
+            color: '#F00',
+            opacity: 0.5,
+        },
+        stroke: {
+            color: 'black',
+            width: 1,
+            opacity: 1,
+        }
     });
-    mapajs.addLayers(comarcasAndaluzas);
 
-    document.getElementById('mapasp').appendChild(mapajs);
+    const poligonoRellenoText = new M.style.Polygon({
+        fill: {
+            color: '#F00',
+            opacity: 0.5,
+        },
+        stroke: {
+            color: 'black',
+            width: 1,
+            opacity: 1,
+        },
+        label: {
+            text: '{{nombre}}'
+        }
+    });
+
+
+    M.proxy(false);
+    M.remote.get('./geodata/comarcascadiz.geojson').then(response => {
+        const json = JSON.parse(response.text);
+        const comarcasAndaluzas = new M.layer.GeoJSON({
+            name: 'comarcasandaluzas',
+            source: json,
+        });
+ /*    
+                comarcasAndaluzas.on(M.evt.HOVER_FEATURES, (features) => {
+            features[0].setStyle(poligonoRellenoText, true);
+        });
+
+        comarcasAndaluzas.on(M.evt.LEAVE_FEATURES, (features) => {
+            features[0].setStyle(poligonoRelleno, true);
+        }); */
+
+        mapajs.addLayers(comarcasAndaluzas);
+
+        mapajs.on(M.evt.COMPLETED, () => {
+            mapajs.removeControls('panzoom');
+            comarcasAndaluzas.getFeaturesExtentPromise().then(extent => mapajs.setBbox(extent));
+            const filteredFeatures = comarcasAndaluzas.getFeatures().filter((feature) => {
+                return ['comarcas.15'].includes(feature.getId()); // (feature.getId()) //
+                // [id1, id2].includes(feature.getId()) // (feature.getId()) //
+            });
+            filteredFeatures.forEach((f) => {
+                f.setStyle(poligonoRelleno);
+            }); // id
+        });
+    });
+    M.proxy(true);
 
 /*     let promesa = new Promise(function(resolve, reject) {
         let comarcas = traeComarcas(infoEspecie.id);

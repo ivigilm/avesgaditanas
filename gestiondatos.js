@@ -1,9 +1,4 @@
-// leeBaseDatos();
-// traeEspecies(2);
-// traeComarcas(2);
-let todasEspecies;
-
-function leeAvisamientos() {
+/* function leeAvisamientos() {
     let avistamientos;
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -27,7 +22,7 @@ function leeComarcas() {
     xhr.open("GET", "lecturazonas.php", true);
     xhr.send();
 }
-
+ */
 
 
 /* especiesdemizona.html */
@@ -38,7 +33,6 @@ function traeEspecies(idzona) {
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
             especies = JSON.parse(xhr.responseText);
-            // muestraDatos(especies);
             document.getElementById('mosaico').innerHTML = `<p>Especies presentes en la zona ${idzona}:</p>`;
             rellenaEspecies(especies);
         }

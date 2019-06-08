@@ -1,15 +1,70 @@
 window.onload = function() {
-
     mapajs = M.map({
         container: 'contenedormapa'
     });
-    
-    const comarcasAndaluzas = new M.layer.GeoJSON({
-        name: 'comarcasandaluzas',
-        url: 'http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:comarcas&maxFeatures=50&outputFormat=application%2Fjson'
+
+    const poligonoRelleno = new M.style.Polygon({
+        fill: {
+            color: '#F00',
+            opacity: 0.5,
+        },
+        stroke: {
+            color: 'black',
+            width: 1,
+            opacity: 1,
+        }
     });
 
-    mapajs.addLayers(comarcasAndaluzas);
+    const poligonoRellenoText = new M.style.Polygon({
+        fill: {
+            color: '#F00',
+            opacity: 0.5,
+        },
+        stroke: {
+            color: 'black',
+            width: 1,
+            opacity: 1,
+        },
+        label: {
+            text: '{{nombre}}'
+        }
+    });
+
+
+    M.proxy(false);
+    M.remote.get('./geodata/comarcascadiz.geojson').then(response => {
+        const json = JSON.parse(response.text);
+        const comarcasAndaluzas = new M.layer.GeoJSON({
+            name: 'comarcasandaluzas',
+            source: json,
+        });
+    
+        comarcasAndaluzas.on(M.evt.SELECT_FEATURES, (feature) => {
+            // function(feature.id);
+        });
+        comarcasAndaluzas.on(M.evt.HOVER_FEATURES, (features) => {
+            features[0].setStyle(poligonoRellenoText, true);
+        });
+
+        comarcasAndaluzas.on(M.evt.LEAVE_FEATURES, (features) => {
+            features[0].setStyle(poligonoRelleno, true);
+        });
+        mapajs.addLayers(comarcasAndaluzas);
+        mapajs.on(M.evt.COMPLETED, () => {
+            comarcasAndaluzas.getFeaturesExtentPromise().then(extent => mapajs.setBbox(extent));
+            comarcasAndaluzas.setStyle(poligonoRelleno);
+        });
+    });
+    M.proxy(true);
+
+
+/*     mapajs.getLayers()[8].getFeatures().forEach((feature) => {
+        if (feature.getGeoJSON().id === 'comarcas.7') {
+            feature.setStyle(poligonoRelleno);
+        }
+    }); */
+
+    window.mapajs = mapajs;
 
     /* guardaCadiz();
 
