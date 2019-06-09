@@ -37,6 +37,7 @@ window.onload = function() {
         const comarcasAndaluzas = new M.layer.GeoJSON({
             name: 'comarcasandaluzas',
             source: json,
+            extract: false,
         });
     
         comarcasAndaluzas.on(M.evt.SELECT_FEATURES, (feature) => {

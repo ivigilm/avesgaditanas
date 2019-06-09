@@ -1,16 +1,30 @@
 // Muestra mosaico con las especies
 function leeEspecies() {
-    let especies;
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            especies = JSON.parse(xhr.responseText);
+            const especies = JSON.parse(xhr.responseText);
             todasEspecies = especies;
             rellenaEspecies(especies);
         }
     }
     xhr.open("GET", "lecturasp.php", true);
     xhr.send();
+}
+
+function obtieneComarcasDeSp(infoEspecie) {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            console.log('xhr.text:');
+            console.log(xhr.responseText);
+            const comarcas = xhr.responseText;
+            muestraInfoEspecie(infoEspecie, comarcas);
+        }
+    }
+    xhr.open("POST", "zsdesp.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(`especie=${infoEspecie.id}`);
 }
 
 function rellenaEspecies(especies) {
@@ -22,7 +36,7 @@ function rellenaEspecies(especies) {
         fotoAve.setAttribute('alt', `foto ${especies[i].nombrecomun}`);
         fotoAve.setAttribute('height', '100px');
         fotoAve.setAttribute('width', '100px');
-        fotoAve.addEventListener('click', () => {muestraInfoEspecie(especies[i])});
+        fotoAve.addEventListener('click', () => {obtieneComarcasDeSp(especies[i])});
         let nombreAve = document.createElement('span');
         nombreAve.innerHTML = especies[i].nombrecomun;
         nuevaAve.appendChild(fotoAve);
@@ -32,7 +46,7 @@ function rellenaEspecies(especies) {
     }
 }
 
-function muestraInfoEspecie(infoEspecie) {
+function muestraInfoEspecie(infoEspecie, comarcas) {
     document.getElementById('mosaico').style.display = 'none';
     document.getElementById('infosp').style.display = 'block';
     document.getElementById('tituloespecie').innerHTML = infoEspecie.nombrecomun;        
@@ -60,22 +74,6 @@ function muestraInfoEspecie(infoEspecie) {
         }
     });
 
-    const poligonoRellenoText = new M.style.Polygon({
-        fill: {
-            color: '#F00',
-            opacity: 0.5,
-        },
-        stroke: {
-            color: 'black',
-            width: 1,
-            opacity: 1,
-        },
-        label: {
-            text: '{{nombre}}'
-        }
-    });
-
-
     M.proxy(false);
     M.remote.get('./geodata/comarcascadiz.geojson').then(response => {
         const json = JSON.parse(response.text);
@@ -83,14 +81,6 @@ function muestraInfoEspecie(infoEspecie) {
             name: 'comarcasandaluzas',
             source: json,
         });
- /*    
-                comarcasAndaluzas.on(M.evt.HOVER_FEATURES, (features) => {
-            features[0].setStyle(poligonoRellenoText, true);
-        });
-
-        comarcasAndaluzas.on(M.evt.LEAVE_FEATURES, (features) => {
-            features[0].setStyle(poligonoRelleno, true);
-        }); */
 
         mapajs.addLayers(comarcasAndaluzas);
 
@@ -98,7 +88,7 @@ function muestraInfoEspecie(infoEspecie) {
             mapajs.removeControls('panzoom');
             comarcasAndaluzas.getFeaturesExtentPromise().then(extent => mapajs.setBbox(extent));
             const filteredFeatures = comarcasAndaluzas.getFeatures().filter((feature) => {
-                return ['comarcas.15'].includes(feature.getId()); // (feature.getId()) //
+                return comarcas.includes(feature.getAttributes().nombre );
                 // [id1, id2].includes(feature.getId()) // (feature.getId()) //
             });
             filteredFeatures.forEach((f) => {
