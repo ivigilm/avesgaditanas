@@ -8,7 +8,7 @@ $ejemplares = $_POST['ejemplares'];
 $fechavista = $_POST['fechavista'];
 $descripcion = $_POST['descripcion'];
 
-$c = new mysqli("localhost", "root", "", "avesgaditanas");
+$c = new mysqli("localhost", "root", "1234", "avesgaditanas");
 $c -> query("SET NAMES utf8");
 $resultado = $c->query("INSERT INTO avistamiento (
     id_sp,

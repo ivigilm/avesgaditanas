@@ -1,13 +1,13 @@
 <?php
-$idzona = $_POST['idzona'];
-$c = new mysqli("localhost", "root", "", "avesgaditanas");
+$comarca = $_POST['comarca'];
+$c = new mysqli("localhost", "root", "1234", "avesgaditanas");
 $c -> query("SET NAMES utf8");
 $salida = array();
-$resultado = $c -> query("SELECT DISTINCT ave.id, ave.nombrecomun, foto 
+$resultado = $c -> query("SELECT DISTINCT ave.id, nombrecomun, nombrecientifico, foto, caracteristicas, habitat
                         FROM avistamiento, ave, comarca
                         WHERE avistamiento.id_comarca = comarca.id
                             AND ave.id = avistamiento.id_sp 
-                            AND comarca.id = $idzona");
+                            AND comarca.nombre = $comarca");
 $salida = $resultado -> fetch_all(MYSQLI_ASSOC);
 echo json_encode($salida);
 $c -> close();

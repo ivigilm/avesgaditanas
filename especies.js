@@ -4,7 +4,6 @@ function leeEspecies() {
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
             const especies = JSON.parse(xhr.responseText);
-            todasEspecies = especies;
             rellenaEspecies(especies);
         }
     }
@@ -12,19 +11,17 @@ function leeEspecies() {
     xhr.send();
 }
 
-function obtieneComarcasDeSp(infoEspecie) {
+function leeEspeciesDeZona(nombreComarca) {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            console.log('xhr.text:');
-            console.log(xhr.responseText);
-            const comarcas = xhr.responseText;
-            muestraInfoEspecie(infoEspecie, comarcas);
+            const especies = JSON.parse(xhr.responseText);
+            rellenaEspecies(especies);
         }
     }
-    xhr.open("POST", "zsdesp.php", true);
+    xhr.open("POST", "spdezona.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(`especie=${infoEspecie.id}`);
+    xhr.send(`comarca=${nombreComarca}`);
 }
 
 function rellenaEspecies(especies) {
@@ -46,6 +43,26 @@ function rellenaEspecies(especies) {
     }
 }
 
+function obtieneComarcasDeSp(infoEspecie) {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            const comarcas = [];
+            if (xhr.responseText !== "La consulta no devuelve datos.") {
+                JSON.parse(xhr.responseText).forEach((objetoConNombre) => {
+                    comarcas.push(objetoConNombre.nombre);
+                });
+                muestraInfoEspecie(infoEspecie, comarcas);
+            } else {
+                console.log('La consulta no devuelve datos.');
+            }            
+        }
+    }
+    xhr.open("POST", "zsdesp.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(`especie=${infoEspecie.id}`);
+}
+
 function muestraInfoEspecie(infoEspecie, comarcas) {
     document.getElementById('mosaico').style.display = 'none';
     document.getElementById('infosp').style.display = 'block';
@@ -59,7 +76,7 @@ function muestraInfoEspecie(infoEspecie, comarcas) {
 
     mapajs = M.map({
         container: 'mapasp',
-        controls: []
+        controls: [],
     });    
     
     const poligonoRelleno = new M.style.Polygon({
@@ -80,6 +97,7 @@ function muestraInfoEspecie(infoEspecie, comarcas) {
         const comarcasAndaluzas = new M.layer.GeoJSON({
             name: 'comarcasandaluzas',
             source: json,
+            extract: false,
         });
 
         mapajs.addLayers(comarcasAndaluzas);
@@ -88,20 +106,13 @@ function muestraInfoEspecie(infoEspecie, comarcas) {
             mapajs.removeControls('panzoom');
             comarcasAndaluzas.getFeaturesExtentPromise().then(extent => mapajs.setBbox(extent));
             const filteredFeatures = comarcasAndaluzas.getFeatures().filter((feature) => {
-                return comarcas.includes(feature.getAttributes().nombre );
+                return comarcas.includes(feature.getAttributes().nombre);
                 // [id1, id2].includes(feature.getId()) // (feature.getId()) //
             });
             filteredFeatures.forEach((f) => {
                 f.setStyle(poligonoRelleno);
-            }); // id
+            });
         });
     });
     M.proxy(true);
-
-/*     let promesa = new Promise(function(resolve, reject) {
-        let comarcas = traeComarcas(infoEspecie.id);
-        resolve(comarcas);
-    });
-    promesa.then(function(comarcas) {
-    }); */
 }

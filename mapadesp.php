@@ -1,6 +1,6 @@
 <?php
 $idsp = $_POST['idsp'];
-$c = new mysqli("localhost", "root", "", "avesgaditanas");
+$c = new mysqli("localhost", "root", "1234", "avesgaditanas");
 $c -> query("SET NAMES utf8");
 $salida = array();
 $resultado = $c -> query("SELECT DISTINCT comarca.id, comarca.nombre 
