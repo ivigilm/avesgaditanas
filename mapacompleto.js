@@ -33,6 +33,7 @@ window.onload = function() {
 
     M.proxy(false);
     M.remote.get('./geodata/comarcascadiz.geojson').then(response => {
+        
         const json = JSON.parse(response.text);
         const comarcasAndaluzas = new M.layer.GeoJSON({
             name: 'comarcasandaluzas',
@@ -40,10 +41,8 @@ window.onload = function() {
             extract: false,
         });
     
-        comarcasAndaluzas.on(M.evt.SELECT_FEATURES, (feature) => {
-            console.log((feature[0].getAttributes().nombre));
-            // leeEspeciesDeZona(feature[0].getAttributes().nombre);
-        });
+        comarcasAndaluzas.on(M.evt.SELECT_FEATURES, (feature) => leeEspeciesDeZona(feature[0].getAttributes().nombre));
+        
         comarcasAndaluzas.on(M.evt.HOVER_FEATURES, (features) => {
             features[0].setStyle(poligonoRellenoText, true);
         });

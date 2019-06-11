@@ -8,7 +8,13 @@ $resultado = $c -> query("SELECT DISTINCT ave.id, nombrecomun, nombrecientifico,
                         WHERE avistamiento.id_comarca = comarca.id
                             AND ave.id = avistamiento.id_sp 
                             AND comarca.nombre = $comarca");
-$salida = $resultado -> fetch_all(MYSQLI_ASSOC);
-echo json_encode($salida);
+
+if ($resultado !== false) {
+    $salida = $resultado -> fetch_all(MYSQLI_ASSOC);
+    echo json_encode($salida);
+} else {
+    echo 'La consulta no devuelve datos.';
+}
+
 $c -> close();
 ?>

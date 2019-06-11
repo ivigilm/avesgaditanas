@@ -15,8 +15,18 @@ function leeEspeciesDeZona(nombreComarca) {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            const especies = JSON.parse(xhr.responseText);
-            rellenaEspecies(especies);
+/*             const especies = JSON.parse(xhr.responseText);
+            rellenaEspecies(especies); */
+
+            const especies = [];
+            if (xhr.responseText !== "La consulta no devuelve datos.") {
+                JSON.parse(xhr.responseText).forEach((especie) => {
+                    especies.push(especie);
+                });
+                rellenaEspecies(especies);
+            } else {
+                console.log('La consulta no devuelve datos.');
+            }
         }
     }
     xhr.open("POST", "spdezona.php", true);
