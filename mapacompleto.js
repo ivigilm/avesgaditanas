@@ -1,5 +1,7 @@
 window.onload = function() {
     
+    document.getElementById('infosp').style.display = 'none';
+    
     mapajs = M.map({
         container: 'contenedormapa'
     });

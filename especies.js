@@ -15,18 +15,11 @@ function leeEspeciesDeZona(nombreComarca) {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-/*             const especies = JSON.parse(xhr.responseText);
-            rellenaEspecies(especies); */
-
             const especies = [];
-            if (xhr.responseText !== "La consulta no devuelve datos.") {
-                JSON.parse(xhr.responseText).forEach((especie) => {
-                    especies.push(especie);
-                });
-                rellenaEspecies(especies);
-            } else {
-                console.log('La consulta no devuelve datos.');
-            }
+            JSON.parse(xhr.responseText).forEach((especie) => {
+                especies.push(especie);
+            });
+            rellenaEspecies(especies);
         }
     }
     xhr.open("POST", "spdezona.php", true);
@@ -35,7 +28,14 @@ function leeEspeciesDeZona(nombreComarca) {
 }
 
 function rellenaEspecies(especies) {
+    if (document.getElementById('contenedormapa') !== null) {
+        document.getElementById('contenedormapa').style.display = 'none';
+    }
+    if (document.getElementsByClassName('otrocontenido')[0] !== undefined) {
+    document.getElementsByClassName('otrocontenido')[0].style.display = 'none';
+    }
     const mosaico = document.getElementById('mosaico'); 
+    mosaico.style.display = 'block';
     for (let i = 0; i < especies.length; i++) {
         let nuevaAve = document.createElement('div');
         let fotoAve = document.createElement('img');
@@ -51,6 +51,9 @@ function rellenaEspecies(especies) {
         nuevaAve.classList.add('avemosaico');
         mosaico.appendChild(nuevaAve);
     }
+    if (document.getElementsByTagName('h1')[0].innerHTML === 'Lugares') {
+        document.getElementsByTagName('h1')[0].innerHTML = `Especies de la zona`;
+    }
 }
 
 function obtieneComarcasDeSp(infoEspecie) {
@@ -58,14 +61,10 @@ function obtieneComarcasDeSp(infoEspecie) {
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
             const comarcas = [];
-            if (xhr.responseText !== "La consulta no devuelve datos.") {
-                JSON.parse(xhr.responseText).forEach((objetoConNombre) => {
-                    comarcas.push(objetoConNombre.nombre);
-                });
-                muestraInfoEspecie(infoEspecie, comarcas);
-            } else {
-                console.log('La consulta no devuelve datos.');
-            }            
+            JSON.parse(xhr.responseText).forEach((objetoConNombre) => {
+                comarcas.push(objetoConNombre.nombre);
+            });
+            muestraInfoEspecie(infoEspecie, comarcas);
         }
     }
     xhr.open("POST", "zsdesp.php", true);
@@ -76,7 +75,7 @@ function obtieneComarcasDeSp(infoEspecie) {
 function muestraInfoEspecie(infoEspecie, comarcas) {
     document.getElementById('mosaico').style.display = 'none';
     document.getElementById('infosp').style.display = 'block';
-    document.getElementById('tituloespecie').innerHTML = infoEspecie.nombrecomun;        
+    document.getElementsByTagName('h1')[0].innerHTML = infoEspecie.nombrecomun;        
     document.getElementById('caracteristicas').innerHTML = infoEspecie.caracteristicas;      
     document.getElementById('habitat').innerHTML = infoEspecie.habitat;
     let fotoAve = document.createElement('img');
