@@ -24,7 +24,7 @@ function leeEspeciesDeZona(nombreComarca) {
     }
     xhr.open("POST", "spdezona.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(`comarca=${nombreComarca}`);
+    xhr.send('comarca=' + nombreComarca);
 }
 
 function rellenaEspecies(especies) {
