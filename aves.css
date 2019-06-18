@@ -9,10 +9,18 @@
     width: 100%;
 }
 
-#navegacion {
+#navegacion, footer {
     background-color: rgb(230, 173, 173);
+    clear: both;
+    color: white;
     height: 30px;
 }
+
+a:link, #navegacion a:visited, #navegacion a:hover, #navegacion a:active {
+    color: white;
+    text-decoration: none;
+}
+
 #presentacion {
     background-color: transparent;
     background-image: url('images/flamencos1000recortada.jpg');
@@ -57,11 +65,6 @@ h2 {
     position: absolute;
     top: -140px;    
     visibility: visible;
-}
-
-footer {
-    background-color: grey;
-    clear: both;
 }
 
 /* sp.html */
