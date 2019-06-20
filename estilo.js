@@ -8,7 +8,6 @@ window.onload = function() {
 
     function togglePalabraImg(e) {
         let visibilidad = e.target.parentNode.parentNode.children[0].style.visibility;
-        let opacidad = e.target.parentNode.parentNode.children[0].style.opacity;
          e.target.parentNode.parentNode.children[0].style.visibility = 
             visibilidad === 'hidden' ? 'visible' : 'hidden';
     }

@@ -84,14 +84,13 @@ function muestraInfoEspecie(infoEspecie, comarcas) {
     document.getElementById('fotosp').appendChild(fotoAve);
 
     mapajs = M.map({
-        container: 'mapasp',
-        controls: [],
+        container: 'mapasp'
     });    
     
     const poligonoRelleno = new M.style.Polygon({
         fill: {
-            color: '#F00',
-            opacity: 0.5,
+            color: 'rgb(230, 173, 173)',
+            opacity: 0.6,
         },
         stroke: {
             color: 'black',
@@ -116,7 +115,6 @@ function muestraInfoEspecie(infoEspecie, comarcas) {
             comarcasAndaluzas.getFeaturesExtentPromise().then(extent => mapajs.setBbox(extent));
             const filteredFeatures = comarcasAndaluzas.getFeatures().filter((feature) => {
                 return comarcas.includes(feature.getAttributes().nombre);
-                // [id1, id2].includes(feature.getId()) // (feature.getId()) //
             });
             filteredFeatures.forEach((f) => {
                 f.setStyle(poligonoRelleno);

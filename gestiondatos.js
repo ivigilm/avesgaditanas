@@ -1,30 +1,3 @@
-/* function leeAvisamientos() {
-    let avistamientos;
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState === 4 && xhr.status === 200) {
-            avistamientos = JSON.parse(xhr.responseText);
-            muestraDatos(avistamientos);
-        }
-    }
-    xhr.open("GET", "lecturabd.php", true);
-    xhr.send();
-}
-
-function leeComarcas() {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState === 4 && xhr.status === 200) {
-            comarcas = JSON.parse(xhr.responseText);
-            muestraDatos(comarcas);
-        }
-    }
-    xhr.open("GET", "lecturazonas.php", true);
-    xhr.send();
-}
- */
-
-
 /* especiesdemizona.html */
 
 function traeEspecies(idzona) {
@@ -68,10 +41,4 @@ function rellenaComarcas(comarcas) {
         lista.appendChild(elementoDeLista);
     });
     document.getElementById('comarcasdondeesta').appendChild(lista);
-}
-
-/* Testing */
-
-function muestraDatos(datos) {
-    console.log(datos);
 }

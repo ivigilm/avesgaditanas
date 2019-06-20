@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>¡Contribuye!</title>
+    <title>Aves gaditanas</title>
+    <link rel="icon" type="image/png" href="images/faviconpink.png" sizes="16">
+    <link rel="stylesheet" href="aves.css" />
     <script src="formulario.js"></script>
     <style>
         span {
@@ -13,53 +15,67 @@
     </style>
 </head>
 <body>
-    <h1>¿Has visto algún ave rara?</h1>
-    <h2>¡Dinos cuál, dónde y cuándo! Y contribuye a mantener este sitio. =)</h2>
-    <form action="introducciondato.php" method="post" name="formavistamiento">
-        <label>
-            <p>¿Cuál es tu nombre?</p>
-            <input type="text" placeholder="Ada Lovelace" id="nombrepersona" name="nombrepersona" onfocusout="nombreContribuyente()" />
-            <span id="errornombre"></span>
-        </label><br/>
-        <label><p>Correo electrónico:</p>
-            <input type="text" placeholder="ada@thebest.es" id="email" name="email" onfocusout="correo()" />
-            <span id="erroremail"></span>
-        </label><br/>
-        <label>
-            <p>¿En qué fecha realizaste el avistamiento?</p>
-            <input type="text" placeholder="aaaa-mm-dd" id="fechavista" name="fechavista" onfocusout="compruebaFecha()" />
-            <span id="errorfecha"></span>
-        </label><br/>
-        <label>
-            <p>¿Qué especie viste?</p>
-            <select id="especie" name="especie" onchange="compruebaSp()">
-                <option value="x">-- Selecciona --</option>
-            </select>
-            <span id="errorespecie"></span>
-        </label><br/>
-        <label>
-            <p>¿Dónde la viste?</p>
-            <select id="comarca" name="comarca" onchange="compruebaComarca()" >
-                <option value="x">-- Selecciona --</option>
-            </select>
-            <span id="errorcomarca"></span>
-        </label><br/>
-        <label>
-            <p>¿Cuántas aves eran?</p>
-            <input type="number" id="ejemplares" name="ejemplares" value="1" min="1" onfocusout="compruebaEjemplares()" />
-        </label><br/>
-        <label>
-            <p>Descripción breve o comentarios sobre el avistamiento:</p>
-            <input type="text" id="descripcion" name="descripcion" />
-        </label><br/>
-        <p><label id="operacion" for="captcha">Resuelve la siguiente operación: </label></p>
-		<input type="text" id="captcha" placeholder="resultado" onfocusout="sumatorio()" />
-		<span id="errorcaptcha"></span>
-	<br/><br/>
-        <label>
-            <input type="submit" id="enviar" value="Enviar" />
-            <span id="error"></span>
-        </label><br/>    
-    </form>    
+    <div id="contenedor">
+        <div id="navegacion">
+            <a href="index.html">Portada</a><a href="especies.html">Especies</a><a href="lugares.html">Lugares</a><a href="formulario.html">Aporta</a>
+        </div>
+        <div id="principal">
+                <h1>¿Has visto algún ave rara?</h1>
+                <h2>¡Dinos cuál, dónde y cuándo! Y contribuye a mantener este sitio. =)</h2>
+                <form action="introducciondato.php" method="post" name="formavistamiento">
+                    <label>
+                        <p>¿Cuál es tu nombre?</p>
+                        <input type="text" placeholder="Ada Lovelace" id="nombrepersona" name="nombrepersona" onfocusout="nombreContribuyente()" />
+                        <span id="errornombre"></span>
+                    </label><br/>
+                    <label><p>Correo electrónico:</p>
+                        <input type="text" placeholder="ada@thebest.es" id="email" name="email" onfocusout="correo()" />
+                        <span id="erroremail"></span>
+                    </label><br/>
+                    <label>
+                        <p>¿En qué fecha realizaste el avistamiento?</p>
+                        <input type="text" placeholder="aaaa-mm-dd" id="fechavista" name="fechavista" onfocusout="compruebaFecha()" />
+                        <span id="errorfecha"></span>
+                    </label><br/>
+                    <label>
+                        <p>¿Qué especie viste?</p>
+                        <select id="especie" name="especie" onchange="compruebaSp()">
+                            <option value="x">-- Selecciona --</option>
+                        </select>
+                        <span id="errorespecie"></span>
+                    </label><br/>
+                    <label>
+                        <p>¿Dónde la viste?</p>
+                        <select id="comarca" name="comarca" onchange="compruebaComarca()" >
+                            <option value="x">-- Selecciona --</option>
+                        </select>
+                        <span id="errorcomarca"></span>
+                    </label><br/>
+                    <label>
+                        <p>¿Cuántas aves eran?</p>
+                        <input type="number" id="ejemplares" name="ejemplares" value="1" min="1" onfocusout="compruebaEjemplares()" />
+                    </label><br/>
+                    <label>
+                        <p>Descripción breve o comentarios sobre el avistamiento:</p>
+                        <input type="text" id="descripcion" name="descripcion" />
+                    </label><br/>
+                    <p><label id="operacion" for="captcha">Resuelve la siguiente operación: </label></p>
+                    <input type="text" id="captcha" placeholder="resultado" onfocusout="sumatorio()" />
+                    <span id="errorcaptcha"></span>
+                <br/><br/>
+                    <label>
+                        <input type="submit" id="enviar" value="Enviar" />
+                        <span id="error"></span>
+                    </label><br/>    
+                </form>            
+        </div>
+        <footer>
+            <div id="photocredits">
+                Fotografía: <a href="https://unsplash.com/@afs_snapshots?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Angel Santos</a>,        
+                <a href="https://unsplash.com/@wildhoney?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">John Fowler</a>,
+                <a href="https://unsplash.com/@joseantoniojimenez?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Jose Antonio Jiménez Macías</a>.
+            </div>
+        </footer>
+    </div>    
 </body>
 </html>

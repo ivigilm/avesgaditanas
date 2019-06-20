@@ -16,21 +16,20 @@
     <!-- Estilos -->
     <link rel="icon" type="image/png" href="images/faviconpink.png" sizes="16">
     <link rel="stylesheet" href="aves.css" />
-<!--    <script src="estilo.js"></script> -->
     <script src="especies.js"></script>
     <script src="mapacompleto.js"></script>
 </head>
 <body>
-    <div id="contenedor">
+    <div id="contenedor" class="lugares">
         <!-- Barra de navegación superior -->
         <div id="navegacion">
-            <a href="index.html">Portada</a> · <a href="especies.html">Especies</a> · <a href="lugares.html">Lugares</a> · <a href="formulario.html">¡Aporta!</a>
+            <a href="index.html">Portada</a><a href="especies.html">Especies</a><a href="lugares.html">Lugares</a><a href="formulario.html">Aporta</a>
         </div>
         <div id="principal">
             <h1>Lugares</h1>
             <div id="contenedormapa"></div>
             <div id="mosaico"></div>
-            <div id="infosp" style="display: 'none';">
+            <div id="infosp" class="especies" style="display: 'none';">
                 <div>
                     <div id="caracteristicas"></div>
                     <div id="fotosp"></div>
@@ -43,9 +42,9 @@
         </div>
         <footer>
             <div id="photocredits">
-                Flamencos: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@afs_snapshots?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Angel Santos"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Angel Santos</span></a>        
-                Ánades rabudos: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@wildhoney?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from John Fowler"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">John Fowler</span></a>
-                Botes: <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@joseantoniojimenez?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Jose Antonio Jiménez Macías"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Jose Antonio Jiménez Macías</span></a>
+                Fotografía: <a href="https://unsplash.com/@afs_snapshots?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Angel Santos</a>,        
+                <a href="https://unsplash.com/@wildhoney?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">John Fowler</a>,
+                <a href="https://unsplash.com/@joseantoniojimenez?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Jose Antonio Jiménez Macías</a>.
             </div>
         </footer>  
     </div>    

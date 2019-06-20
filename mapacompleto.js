@@ -6,10 +6,12 @@ window.onload = function() {
         container: 'contenedormapa'
     });
 
+    mapajs.on(M.evt.COMPLETED, () => { mapajs.removeControls('panzoom'); });
+
     const poligonoRelleno = new M.style.Polygon({
         fill: {
-            color: '#F00',
-            opacity: 0.5,
+            color: 'rgb(230, 173, 173)',
+            opacity: 0.6,
         },
         stroke: {
             color: 'black',
@@ -20,8 +22,8 @@ window.onload = function() {
 
     const poligonoRellenoText = new M.style.Polygon({
         fill: {
-            color: '#F00',
-            opacity: 0.5,
+            color: 'rgb(230, 173, 173)',
+            opacity: 0.6,
         },
         stroke: {
             color: 'black',

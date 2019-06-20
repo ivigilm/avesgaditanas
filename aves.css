@@ -5,20 +5,47 @@
 #contenedor > * {
     max-width: 950px;
     margin: auto;
-    padding: 1%;    
     width: 100%;
 }
 
-#navegacion, footer {
+#navegacion {    
     background-color: rgb(230, 173, 173);
+    letter-spacing: 0.2em;
+    text-align: right;
+    word-spacing: 1em;
+}
+
+#navegacion a {
+    border-left: 1px solid white;
+    padding: 2px 15px 2px 7px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: white;
+    text-decoration: none;
+}
+
+#navegacion, footer {
     clear: both;
     color: white;
     height: 30px;
+    padding: 5px;
 }
 
-a:link, #navegacion a:visited, #navegacion a:hover, #navegacion a:active {
-    color: white;
-    text-decoration: none;
+footer {
+    background-color: #38516A;
+    text-align: center;
+    word-spacing: 0.2em;
+}
+
+#principal {
+    background-color: #F2F2D5;
+    color: #38516A;
+    text-align: center;
+}
+
+.lugares #principal, .especies #principal {
+    background-color: #749AB3;
 }
 
 #presentacion {
@@ -26,11 +53,14 @@ a:link, #navegacion a:visited, #navegacion a:hover, #navegacion a:active {
     background-image: url('images/flamencos1000recortada.jpg');
     height: 250px;
     opacity: 0.85;
+    width: 950px;
 }
 
 h1 {
     color: rgb(230, 173, 173);
     margin: 0;
+    padding: 15px 30px;
+    text-align: left;
 }
 
 h2 {
@@ -42,7 +72,7 @@ h2 {
 }
 
 #descubrir img {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 #descubrir img:hover {
@@ -58,10 +88,11 @@ h2 {
 }
 
 .contenedorimg span {
+    color: black;
     font-size: 3em;    
     font-variant: small-caps;
     left: 100px;
-    opacity: 0.6;
+    opacity: 0.8;
     position: absolute;
     top: -140px;    
     visibility: visible;
@@ -78,14 +109,21 @@ h2 {
     width: 100%;
 }
 
-/* #principal>div {
-    height: 320px;
-    margin: 20px;
-} */
+#principal>#mosaico {
+    margin: auto;
+    width: 88%;
+}
 
 #principal>#mosaico>div {
     float: left;
     width: 180px;
+}
+
+.especies>#principal>#infosp, .lugares>#principal>#infosp {
+    margin: auto;
+    overflow: hidden;
+    text-align: justify;
+    width: 70%;
 }
 
 #principal>#infosp>div {
@@ -103,10 +141,16 @@ h2 {
     width: 48%;
 }
 
-/* #principal>div>div>* {
+#infosp #contenedorsp {
+    border: 5px solid rgb(230, 173, 173);
+    height: 300px;
     margin: auto;
     width: 300px;
-} */
+}
+
+.especies canvas.ol-unselectable {
+    height: 287px !important;
+}
 
 /* especies.html */
 
@@ -133,4 +177,24 @@ h2 {
 
 #fotosp>img {
     width: 100%;
+}
+
+/* lugares.html */
+
+#contenedormapa {
+    border: 5px solid #F2F2D5;
+    border-radius: 5px;
+    height: 700px;
+    margin: auto;
+    width: 700px;
+}
+
+canvas.ol-unselectable {
+    height: 690px !important;
+}
+
+/* formulario */
+
+input {
+    text-align: center;
 }
