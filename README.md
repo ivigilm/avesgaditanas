@@ -12,11 +12,6 @@ Consiste en:
 
 * HTML5
 * CSS3
-* ECMAScript 6
+* JavaScript
 * MapeaJS
-
-## Versiones
-
-* **aves-vainilla** es la primera versión, escrita en JavaScript puro.
-* **aves-react** es la segunda versión, donde se introduce ReactJS.
 
